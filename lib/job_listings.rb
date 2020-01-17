@@ -1,6 +1,9 @@
-require "job_listings/version"
+# my environment
+# all files point here
+require "job_listings"
+require "rest-client"
+require "json"
 
-module JobListings
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./job_listings/version"
+require_relative "./job_listings/cli"
+require_relative "./job_listings/listing"

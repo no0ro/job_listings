@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# my run file
+
+require "bundler/setup"
+require "job_listings"
+
+JobListings::CLI.new.call
