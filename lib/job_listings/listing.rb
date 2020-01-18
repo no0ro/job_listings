@@ -30,6 +30,10 @@ class Listing
     @@all << self
   end
 
+  def self.delete
+    @@all = []
+  end
+
 def self.preview_all
   Listing.all.map.with_index do |list, index|
     puts "#{index+1}.  Position: #{list.title}"
@@ -37,27 +41,28 @@ def self.preview_all
   end
 end
 
+def self.find_by_num(user_selection)
+  puts "hey!"
+end
+
 def detailed_display
 end
 
+# 2) iterate through #{user_input} listings
+# create variables and set them equal to the value of each key we want to use
+# create new Listing objects and pass in ^^ to be initialized as instance variables
+# call a save instance method.
+def self.new_from_api(listings)
+  listings.each do |listing|
+    company = listing["company"]
+    title = listing["title"]
+    date_posted = listing["created_at"]
+    url = listing["url"]
 
-
-
-  # 2) iterate through #{user_input} listings
-  # create variables and set them equal to the value of each key we want to use
-  # create new Listing objects and pass in ^^ to be initialized as instance variables
-  # call a save instance method.
-  def self.new_from_api(listings)
-    listings.each do |listing|
-      company = listing["company"]
-      title = listing["title"]
-      date_posted = listing["created_at"]
-      url = listing["url"]
-
-      list = Listing.new(company, title, date_posted, url)
-      #placing save here gives me freedom to add to the Listing instance, before it gets added to @@all, down the road if i choose
-      list.save
-    end
+    list = Listing.new(company, title, date_posted, url)
+    #placing save here gives me freedom to add to the Listing instance, before it gets added to @@all, down the road if i choose
+    list.save
   end
+end
 
 end
