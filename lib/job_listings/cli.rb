@@ -24,7 +24,8 @@ end
 
 def display_preview
   # Listing.api_response(user_input)  #call api > pass to `new_from_api` & create Listing instances
-  Listing.preview_all #display preview format of instances
+  # Listing.preview_all #display preview format of instances
+  Listing.detailed_all
   display_job_details()
 end
 

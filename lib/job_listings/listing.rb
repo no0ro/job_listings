@@ -41,18 +41,22 @@ def self.preview_all
   end
 end
 
-# def self.detailed_all
-#   Listing.all.map.with_index do |list,  index|
-#     puts "#{index+1}. Position: #{list.title}"
-#     puts  ""
-# end
+def self.detailed_all
+  Listing.all.map do |list|
+    puts "Company: #{list.company}"
+    puts "Position: #{list.title}"
+    puts "Date Posted: #{list.date_posted}"
+    puts "Website: #{list.url}"
+    puts  ""
+  end
+end
 
 def self.find_by_num(user_selection)
   list = self.all[user_selection.to_i-1]
   list.detailed_display
-
 end
 
+# selected a specific instance, now show the detail
 def detailed_display()
   puts ""
   puts "  Company:      #{self.company}"
@@ -70,7 +74,7 @@ def self.new_from_api(listings)
     company = listing["company"]
     title = listing["title"]
     date_posted = listing["created_at"]
-    url = listing["url"]
+    url = listing["company_url"]
 
     list = Listing.new(company, title, date_posted, url)
     #placing save here gives me freedom to add to the Listing instance, before it gets added to @@all, down the road if i choose
