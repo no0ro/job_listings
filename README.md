@@ -1,8 +1,6 @@
 # JobListings
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/job_listings`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Job Listings. Use this CLI based Gem to find available tech jobs in the New York area. Simply enter a search term and Job Listings will return a list of corresponding tech roles right in your terminal! Users can view the company, position, date the listing was posted, and the company website.
 
 ## Installation
 
@@ -32,7 +30,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/no0ro/job_listings. 
+Bug reports and pull requests are welcome on GitHub at https://github.com/no0ro/job_listings.
 
 ## License
 
