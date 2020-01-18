@@ -35,18 +35,20 @@ class Listing
 
   def self.preview_all
     Listing.all.map.with_index do |list, index|
-      puts "#{index+1}. Position: #{list.title}"
-      puts  ""
+      puts ""
+      puts "#{index+1}. #{list.title}"
     end
   end
 
   def self.detailed_all
     Listing.all.map do |list|
+      #puts "***********************************"
       puts "Company: #{list.company}"
       puts "Position: #{list.title}"
       puts "Date Posted: #{list.date_posted}"
       puts "Website: #{list.url}"
       puts  ""
+      #puts "***********************************"
     end
   end
 
@@ -57,7 +59,6 @@ class Listing
 
 # selected a specific instance, now show the detail
   def detailed_display()
-    puts ""
     puts "  Company:      #{self.company}"
     puts "  Position:     #{self.title}"
     puts "  Date Posted:  #{self.date_posted}"
@@ -74,6 +75,7 @@ class Listing
       title = listing["title"]
       date_posted = listing["created_at"].slice(0,11)
       url = listing["company_url"]
+      #description = listing["description"]
 
       list = Listing.new(company, title, date_posted)
       # placing save here gives me freedom to add to the Listing instance, before it gets added to @@all, down the road if i choose
