@@ -32,7 +32,8 @@ end
 def display_job_details()
   # puts "What would you like to do next?"
 
-  puts "To learn more about a position type its number: "
+  puts "To see details about a specific position, type its number: "
+  # puts "To see details about all of the above positions, type: all "
       #type the number of a position to learn more about it
   puts "To go back and search a new word type: search"
   puts "To leave my lovely program type: exit"
@@ -48,9 +49,11 @@ def display_job_details()
   elsif input2 == "search"
     Listing.delete
     call()
-  elsif input2 == "1" # a number (bc already validating up above)
+  # elsif input2 == "all"
+  #   puts Listing.detailed_all
+  elsif input2 == "2" # a number (bc already validating up above)
     #Listing.find_by_num("1")
-    detailed_display("1")
+    detailed_display("2")
     #number between 0 and Listing.length (validation)
     #full dissplay of this listing,
 
@@ -71,8 +74,9 @@ end
     # display ^^
         # will display details
 
+    puts ""
     puts "***********************************"
-    puts "What would you like to do next?"
+    puts "What would you like to do next?" #type the  letter in [] of what you'd like to do next
     puts "***********************************"
     puts "To enter a different number and learn more about the other {user_input} jobs, type: menu"
     #type the number of a position to learn more about it
