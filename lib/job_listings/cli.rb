@@ -3,9 +3,8 @@
 class JobListings::Cli
 
 def call
-  get_search_word # hold the og search word
-  #call_api_create_instances(user_input) # will call api again.  will create instances
-  menu
+  get_search_word # house the og search word, pass to api, CREATE @instances
+  menu # DISPLAY @instances, call exit_search_or_details control flow method
 end
 
 def get_search_word
@@ -15,22 +14,19 @@ def get_search_word
   puts "********************************************************"
   puts ""
   user_input = gets.chomp.downcase
-  Listing.api_response(user_input)
+  Listing.api_response(user_input) # call api,  pass to `new_from_api` & create Listing instances
 end
 
-# def call_api_create_instances(user_input) #call api > pass to `new_from_api` & create Listing instances
-#
-# end
+def menu # DISPLAY @instances,
+  puts ""
+  puts ""
+  Listing.preview_all # display preview format of all instances
+  puts ""
 
-def menu
-  puts ""
-  puts ""
-  Listing.preview_all #display preview format of all instances
-  #Listing.detailed_all #display detailed  format of all instances
-  puts ""
-  exit_search_or_details #necessary to put call  here so that refer to it as menu
+  exit_search_or_details
+      # necessary to put this call here. keeps flow so user can go back and
+      # choose a dif Number to see Job Details, WITHOUT re-calling the API
 end
-
 
 def exit_search_or_details
   puts ""
@@ -38,70 +34,69 @@ def exit_search_or_details
   puts "   What would you like to do next?"
   puts "______________________________________"
   puts ""
-  puts "--> To see details of a specific position, type the associated number. " #{}"Type The Number Of A Position To Learn More About It."
-
-  # puts "To see details about all of the above positions, type: all "
-      #type the number of a position to learn more about it
+  puts "--> To see details of a specific position, type the associated number. "
   puts "--> To search a new word, type:  search"
   puts "--> To leave my lovely program, type:  exit"
   puts ""
   input2 = gets.chomp
   puts ""
   puts ""
-    # [TO DO] validate
-      # does this word return any search rresults?!?!?
-        # if word: downcase, validate for downcase, TWO WORDS
-        # if number: between 1-List.length?
-        # else: not valid input, lets try this again display_selected()
 
-# elsif input2 == "all" # puts Listing.detailed_all
-  if input2 == "exit"
+  if input2 == "exit" # exit program
+    puts "Thanks for stopping by!"
     return
   elsif input2 == "search"
     Listing.delete
-    call()
-  elsif input2.to_i.between?(1, Listing.all.size) # a number (bc already validating up above)s
+    call
+  elsif input2.to_i.between?(1, Listing.all.size) # validate Num, pass to job_details to retrieve deets
     job_details(input2)
-    #number between 0 and Listing.length (validation)
-    #full dissplay of this listing,
-          # hmm decide later when and if to make a method here.
-          # options to go back to start and enter keyword
-          # exit
-          # go back and sxelect a different num - menu(input) (hmmm this wont persist, so Listing.preview_all)
-  else
-    puts "___________________________________"
-    puts "Hmm, somethings not right."
-    puts "Lets try again."
-    exit_search_or_details()
+  else # recursive call. goal: get a valid input2
+    puts "*************************************"
+    puts "     Hmm, somethings not right."
+    puts "         Lets try again."
+    puts "*************************************"
+    puts ""
+    puts ""
+    exit_search_or_details
+    puts ""
   end
 end
 
+
 def job_details(user_num)
-  Listing.find_by_num(user_num) # finds object
+  num =  user_num # save user input incase Error and else needs to recurse job_details(num)
+  Listing.find_by_num(num) # FIND & DISPLAY object at the passed in index #
 
   puts ""
   puts "______________________________________"
-  puts "   What would you like to do next?" #type the  letter in [] of what you'd like to do next
+  puts "   What would you like to do next?"
   puts "______________________________________"
   puts ""
-  puts "--> To go back and enter a different number, type:  menu" #type the number of a position to learn more about it
+  puts "--> To go back and enter a different number, type:  menu"
   puts "--> To search a new word, type:  search"
   puts "--> To leave my lovely program, type:  exit"
   puts ""
   input3 = gets.chomp.downcase
   puts ""
   puts ""
-  # [TO DO] validate
-      # if word: downcase, validate for downcase, TWO WORDS
-      # if number: between 1-List.length?
-      # else: not valid input, lets try this again display_selected()
-  if input3 == "exit"
+
+  if input3 == "exit" # exit program
+    puts "Thanks for stopping by!"
     return
-  elsif input3 == "search"
+  elsif input3 == "search" # erase Listing @instances. Ask for new search word.
     Listing.delete
-    call()
-  elsif input3 == "menu"
-    menu()
+    call
+  elsif input3 == "menu" # display Num's  menu again.
+    menu
+  else # recursive call. goal: get a valid input3
+    puts "*************************************"
+    puts "     Hmm, somethings not right."
+    puts "         Lets try again."
+    puts "*************************************"
+    puts ""
+    puts ""
+    job_details(num)
+    puts ""
   end
 end
 

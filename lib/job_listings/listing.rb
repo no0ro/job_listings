@@ -29,7 +29,7 @@ class Listing
   end
 
   def self.delete
-    puts self.all.size
+    ##
     @@all = []
   end
 
@@ -37,18 +37,6 @@ class Listing
     Listing.all.map.with_index do |list, index|
       puts ""
       puts "#{index+1}. #{list.title}"
-    end
-  end
-
-  def self.detailed_all
-    Listing.all.map do |list|
-      #puts "***********************************"
-      puts "Company: #{list.company}"
-      puts "Position: #{list.title}"
-      puts "Date Posted: #{list.date_posted}"
-      puts "Website: #{list.url}"
-      puts  ""
-      #puts "***********************************"
     end
   end
 
