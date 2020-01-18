@@ -19,6 +19,7 @@ end
 
 def display_preview(user_input)
   Listing.api_response(user_input)
+  puts Listing.all
     # Listing.preview
 
           ## puts
