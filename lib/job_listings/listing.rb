@@ -36,16 +36,21 @@ class Listing
 
 def self.preview_all
   Listing.all.map.with_index do |list, index|
-    puts "#{index+1}.  Position: #{list.title}"
+    puts "#{index+1}. Position: #{list.title}"
     puts  ""
   end
 end
 
 def self.find_by_num(user_selection)
-  puts "hey!"
+  puts "hey"
+  # puts "Company: #{list.company}"
+  # puts "Position: #{list.title}"
+  # puts "Date Posted: #{list.date_posted}"
+  # puts "Website: #{list.url}"
 end
 
 def detailed_display
+
 end
 
 # 2) iterate through #{user_input} listings
