@@ -22,7 +22,6 @@ def menu # DISPLAY @instances,
   puts ""
   Listing.preview_all # display preview format of all instances
   puts ""
-
   exit_search_or_details
       # necessary to put this call here. keeps flow so user can go back and
       # choose a dif Number to see Job Details, WITHOUT re-calling the API

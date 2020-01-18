@@ -41,13 +41,14 @@ class Listing
     end
   end
 
-
+  # < called by `job_detailss`
   def self.find_by_num(user_selection)
     list = self.all[user_selection.to_i-1] # returns the @instance matching the index
     list.detailed_display # display contents of ^ @instance
   end
 
-# selected a specific instance, now show the detail
+  # called by  ^
+  # instance method, show the details of the called on object
   def detailed_display
     puts "  Company:      #{self.company}"
     puts "  Position:     #{self.title}"
@@ -56,9 +57,10 @@ class Listing
   end
 
   # 2) iterate through #{user_input} listings
-  # create variables and set them equal to the value of each key we want to use
-  # create new Listing objects and pass in ^^ to be initialized as instance variables
-  # call a save instance method.
+  # create variables and set them equal to the result of each key's value
+  # create new Listing instance and pass in ^^ to be initialized with, or add them "manually" below
+  # call instance method `save` to push the the completed @instance into the class variable @@all
+  # called by ^ `api_response`
   def self.new_from_api(listings)
     listings.each do |listing|
       company = listing["company"]
@@ -67,12 +69,11 @@ class Listing
       url = listing["company_url"]
 
       list = Listing.new(company, title)
-
-      # placing save here gives me freedom to add to the Listing instance, before it gets added to @@all, down the road if i choose
       list.date_posted = date_posted
       if url == nil ? (list.url = "Google them! The website is MIA on our end.") : (list.url = url)
-      end # <-- why?
-      list.save
+      end
+
+      list.save # this list.save location lets me add non-initialized instance variables to each Listing instance, before it gets saved to @@all
     end
   end
 

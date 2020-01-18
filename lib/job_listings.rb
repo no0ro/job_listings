@@ -1,5 +1,6 @@
-# my environment
+# Environment
 # all files point here
+
 require "job_listings"
 require "rest-client"
 require "json"

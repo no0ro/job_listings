@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# my run file
+# Run file
 
 require "bundler/setup"
 require "job_listings"
