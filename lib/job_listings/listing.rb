@@ -72,7 +72,7 @@ def self.new_from_api(listings)
   listings.each do |listing|
     company = listing["company"]
     title = listing["title"]
-    date_posted = listing["created_at"]
+    date_posted = listing["created_at"].slice(0,11)
     url = listing["company_url"]
 
     list = Listing.new(company, title, date_posted)
