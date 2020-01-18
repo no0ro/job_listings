@@ -18,9 +18,8 @@ def get_search_word
 end
 
 def display_preview(user_input)
-  Listing.api_response(user_input)
-  puts Listing.all
-    # Listing.preview
+  Listing.api_response(user_input)  #call api, create Listing instances
+  Listing.preview_all #display preview format of instances
 
           ## puts
           # 1. Job Title
