@@ -11,9 +11,9 @@ class Listing
     @title = title
   end
 
-  # 1) asks api for jobs matching the users input.
-  # returns a Json object of that data.
-  # pass ^ to self.new_from_api so i can make Listing instances for the Ruby search word
+  # 1) asks api for jobs matching the users input. returns a Json object of that data.
+  # pass ^ to self.new_from_api to instanciate Listing @instances(objects)
+  # < called by `get_search_word`
   def self.api_response(user_input)
     request = RestClient.get("https://jobs.github.com/positions.json?description=#{user_input}&location=new+york")
     response = JSON.parse(request)
@@ -29,10 +29,11 @@ class Listing
   end
 
   def self.delete
-    ##
     @@all = []
   end
 
+  # < called by `menu`
+  # iterate through every item in @@all, return each item with its index and title property displayed
   def self.preview_all
     Listing.all.map.with_index do |list, index|
       puts ""
@@ -40,13 +41,14 @@ class Listing
     end
   end
 
+
   def self.find_by_num(user_selection)
-    list = self.all[user_selection.to_i-1]
-    list.detailed_display
+    list = self.all[user_selection.to_i-1] # returns the @instance matching the index
+    list.detailed_display # display contents of ^ @instance
   end
 
 # selected a specific instance, now show the detail
-  def detailed_display()
+  def detailed_display
     puts "  Company:      #{self.company}"
     puts "  Position:     #{self.title}"
     puts "  Date Posted:  #{self.date_posted}"
