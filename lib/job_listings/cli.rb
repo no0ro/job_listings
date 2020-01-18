@@ -28,17 +28,16 @@ def menu
   Listing.preview_all #display preview format of all instances
   #Listing.detailed_all #display detailed  format of all instances
   puts ""
-  display_job_details() #necessary to put call  here so that refer to it as menu
+  exit_search_or_details #necessary to put call  here so that refer to it as menu
 end
 
 
-def display_job_details()
+def exit_search_or_details
   puts ""
   puts "______________________________________"
   puts "   What would you like to do next?"
   puts "______________________________________"
   puts ""
-  #puts "***********************************"
   puts "--> To see details of a specific position, type the associated number. " #{}"Type The Number Of A Position To Learn More About It."
 
   # puts "To see details about all of the above positions, type: all "
@@ -47,7 +46,6 @@ def display_job_details()
   puts "--> To leave my lovely program, type:  exit"
   puts ""
   input2 = gets.chomp
-
   puts ""
   puts ""
     # [TO DO] validate
@@ -63,7 +61,7 @@ def display_job_details()
     Listing.delete
     call()
   elsif input2.to_i.between?(1, Listing.all.size) # a number (bc already validating up above)s
-    detailed_display(input2)
+    job_details(input2)
     #number between 0 and Listing.length (validation)
     #full dissplay of this listing,
           # hmm decide later when and if to make a method here.
@@ -71,15 +69,14 @@ def display_job_details()
           # exit
           # go back and sxelect a different num - menu(input) (hmmm this wont persist, so Listing.preview_all)
   else
-
     puts "___________________________________"
     puts "Hmm, somethings not right."
     puts "Lets try again."
-    display_job_details()
+    exit_search_or_details()
   end
 end
 
-def detailed_display(user_num)
+def job_details(user_num)
   Listing.find_by_num(user_num) # finds object
 
   puts ""
