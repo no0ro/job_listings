@@ -1,6 +1,6 @@
 # cli - controller
 
-class JobListings::CLI
+class JobListings::Cli
 
 def call
   user_input = get_search_word # hold the og search word
