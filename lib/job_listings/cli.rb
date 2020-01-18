@@ -17,8 +17,6 @@ def get_search_word
         # else please type a keyword, and recall get_search_word
 end
 
-
-
 def display_preview(user_input)
   Listing.api_response(user_input)
     # Listing.preview
@@ -28,6 +26,10 @@ def display_preview(user_input)
           # 2. Job Title
 
 end
+
+
+
+
 # --> decide when/ if to make this a new method. or combine it into one.
 
 # def display_selected(input2)
