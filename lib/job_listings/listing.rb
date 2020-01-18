@@ -30,6 +30,7 @@ class Listing
   end
 
   def self.delete
+    puts self.all.size
     @@all = []
   end
 
