@@ -10,13 +10,15 @@ end
 
 def get_search_word
   puts "Discover open tech jobs in NY. Enter a search word: "
-  input = gets.chomp.downcase
-    # validations for user input
-        # if (!" " || 2)
-            # return input
-        # else please type a keyword, and recall get_search_word
+  gets.chomp.downcase
 
+  # if input == "" || " "
+  #   puts "invalid input. try again!"
+  #   call
+  # else
+  #   return input
 end
+#  two words
 
 def call_api_create_instances(user_input) #call api > pass to `new_from_api` & create Listing instances
     Listing.api_response(user_input)
@@ -57,16 +59,18 @@ def display_job_details()
     detailed_display("2")
     #number between 0 and Listing.length (validation)
     #full dissplay of this listing,
-
-
           # hmm decide later when and if to make a method here.
           # options to go back to start and enter keyword
           # exit
           # go back and select a different num - display_preview(input) (hmmm this wont persist, so Listing.preview_all)
   else
+    puts ""
+    puts "***********************************"
     puts "Hmm, somethings not right."
     puts "Lets try again."
-    display_selected()
+    puts "***********************************"
+    puts ""
+    display_job_details()
   end
 end
 
