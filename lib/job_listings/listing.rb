@@ -6,11 +6,10 @@ class Listing
 
   @@all = []
 
-  def initialize(company, title, date_posted, url)
+  def initialize(company, title, date_posted)
     @company = company
     @title = title
     @date_posted = date_posted
-    @url = url
   end
 
   # 1) asks api for jobs matching the users input.
@@ -76,8 +75,15 @@ def self.new_from_api(listings)
     date_posted = listing["created_at"]
     url = listing["company_url"]
 
-    list = Listing.new(company, title, date_posted, url)
+    list = Listing.new(company, title, date_posted)
     #placing save here gives me freedom to add to the Listing instance, before it gets added to @@all, down the road if i choose
+    if url == nil
+      p url
+      list.url = "Google them! The website is MIA on our end."
+    else
+      p url
+      list.url = url
+    end
     list.save
   end
 end
