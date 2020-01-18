@@ -3,14 +3,14 @@
 class JobListings::CLI
 
 def call
-    #  user_input = get_search_word
-    #  display_preview(user_input)
+  user_input = get_search_word
+  display_preview(user_input)
     #  search_again
 end
 
 def get_search_word
-  puts "Discover open tech jobs in NY. Enter a search keyword: "
-  input = gets.chomp.downcase
+  puts "Discover open tech jobs in NY. Enter a search word: "
+  gets.chomp.downcase
     # validations for user input
         # if (!" " || 2)
             # return input
@@ -19,15 +19,15 @@ end
 
 
 
-# def display_preview(user_input)
-    # Listing.get_listings(user_input)
+def display_preview(user_input)
+  Listing.api_response(user_input)
     # Listing.preview
 
           ## puts
           # 1. Job Title
           # 2. Job Title
 
-
+end
 # --> decide when/ if to make this a new method. or combine it into one.
 
 # def display_selected(input2)
