@@ -3,8 +3,8 @@
 class JobListings::Cli
 
 def call
-  user_input = get_search_word # hold the og search word
-  call_api_create_instances(user_input) # will call api again.  will create instances
+  get_search_word # hold the og search word
+  #call_api_create_instances(user_input) # will call api again.  will create instances
   display_preview
 end
 
@@ -14,12 +14,13 @@ def get_search_word
   puts "               Enter a Search Word: "
   puts "********************************************************"
   puts ""
-  gets.chomp.downcase
-end
-
-def call_api_create_instances(user_input) #call api > pass to `new_from_api` & create Listing instances
+  usesr_input = gets.chomp.downcase
   Listing.api_response(user_input)
 end
+
+# def call_api_create_instances(user_input) #call api > pass to `new_from_api` & create Listing instances
+#
+# end
 
 def display_preview
   puts ""
@@ -27,7 +28,7 @@ def display_preview
   Listing.preview_all #display preview format of all instances
   #Listing.detailed_all #display detailed  format of all instances
   puts ""
-  display_job_details()
+  display_job_details() #necessary to put call  here so that refer to it as menu
 end
 
 
