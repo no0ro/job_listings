@@ -12,34 +12,38 @@ def get_search_word
   puts "             Discover Tech Jobs in NY "
   puts "               Enter a Search Word: "
   puts "********************************************************"
-  puts ""
+  /n/
   user_input = gets.chomp.downcase
   Listing.api_response(user_input) # call api,  pass to `new_from_api` & create Listing instances
 end
 
 def menu # DISPLAY @instances,
-  puts ""
-  puts ""
+  /n/
+  /n/
   Listing.preview_all # display preview format of all instances
-  puts ""
+  /n/
+  puts
+  /n/
   exit_search_or_details
       # necessary to put this call here. keeps flow so user can go back and
       # choose a dif Number to see Job Details, WITHOUT re-calling the API
 end
 
 def exit_search_or_details
-  puts ""
+  /n/
+  puts
   puts "______________________________________"
   puts "   What would you like to do next?"
   puts "______________________________________"
-  puts ""
+  /n/
   puts "--> To see details of a specific position, type the associated number. "
   puts "--> To search a new word, type:  search"
   puts "--> To leave my lovely program, type:  exit"
-  puts ""
+  /n/
   input2 = gets.chomp
-  puts ""
-  puts ""
+  /n/
+  puts
+  /n/
 
   if input2 == "exit" # exit program
     puts "Thanks for stopping by!"
@@ -54,10 +58,9 @@ def exit_search_or_details
     puts "     Hmm, somethings not right."
     puts "         Lets try again."
     puts "*************************************"
-    puts ""
-    puts ""
+    /n/
+    /n/
     exit_search_or_details
-    puts ""
   end
 end
 
@@ -66,18 +69,20 @@ def job_details(user_num)
   num =  user_num # save user input incase Error and else needs to recurse job_details(num)
   Listing.find_by_num(num) # FIND & DISPLAY object at the passed in index #
 
-  puts ""
+  /n/
+  puts
+  puts
   puts "______________________________________"
   puts "   What would you like to do next?"
   puts "______________________________________"
-  puts ""
+  /n/
   puts "--> To go back and enter a different number, type:  menu"
   puts "--> To search a new word, type:  search"
   puts "--> To leave my lovely program, type:  exit"
-  puts ""
+  /n/
   input3 = gets.chomp.downcase
-  puts ""
-  puts ""
+  /n/
+  /n/
 
   if input3 == "exit" # exit program
     puts "Thanks for stopping by!"
@@ -92,11 +97,10 @@ def job_details(user_num)
     puts "     Hmm, somethings not right."
     puts "         Lets try again."
     puts "*************************************"
-    puts ""
-    puts ""
+    /n/
+    /n/
     job_details(num)
-    puts ""
+    /n/
   end
 end
-
 end

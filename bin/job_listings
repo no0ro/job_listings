@@ -2,6 +2,6 @@
 # Run file
 
 require "bundler/setup"
-require "job_listings"
+require_relative "../lib/job_listings"
 
 JobListings::Cli.new.call

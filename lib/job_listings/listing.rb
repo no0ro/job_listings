@@ -1,5 +1,3 @@
-require "rest-client"
-require "json"
 
 class Listing
   attr_accessor :company, :title, :date_posted, :url
@@ -35,15 +33,19 @@ class Listing
   # < called by `menu`
   # iterate through every item in @@all, return each item with its index and title property displayed
   def self.preview_all
-    Listing.all.map.with_index do |list, index|
+    @@sorted = Listing.all.sort do |a, b|
+      a.title[0] <=> b.title[1]
+    end
+
+    @@sorted.each.with_index(1) do |list, index|
       puts ""
-      puts "#{index+1}. #{list.title}"
+      puts "#{index}. #{list.title}"
     end
   end
 
   # < called by `job_detailss`
   def self.find_by_num(user_selection)
-    list = self.all[user_selection.to_i-1] # returns the @instance matching the index
+    list = @@sorted[user_selection.to_i-1] # returns the @instance matching the index
     list.detailed_display # display contents of ^ @instance
   end
 
@@ -78,3 +80,6 @@ class Listing
   end
 
 end
+
+#Binding.pry
+#0
